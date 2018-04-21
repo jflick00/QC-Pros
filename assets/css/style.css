@@ -1,0 +1,47 @@
+body {
+    background-color: #1D8CAB;
+}
+
+label {
+    font-size: 30px;
+    font-family: 'Righteous', cursive;
+    font-weight: 900; 
+}
+
+#athlete-input {
+    margin-left: 20px;
+}
+
+#add-athlete {
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.card,
+.border-default {
+    width: 100%;
+    margin: 30px auto;
+    border: solid 4px #ffffff;
+    background-color: #1D0C65;
+    background-image: url("../images/hornets_logo.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: contain;
+}
+
+button {
+    margin: 5px 5px 5px 5px;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #1D0C65;
+    border-color: #ffffff;
+    cursor: pointer;
+}
+
+#giphyPng {
+    margin: 0 auto;
+    margin-bottom: 20px;
+}

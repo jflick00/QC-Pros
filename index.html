@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>QC Pros</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
+    
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <b4-card>
+            
+            <div class="row">
+                <form id="athlete-form">
+                    <label for="athlete-input">Add an athlete</label>
+                    <input type="text" id="athlete-input" placeholder="Enter name">
+                    
+                    <!-- Button triggers new athlete to be added -->
+                    <input id="add-athlete" type="submit" value="Add">
+                </form>
+            </div>
+
+            <div class="row">
+                <!-- Rendered buttons will get dumped here -->
+                <div id="buttons-view"></div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card border-default">
+                        <div class="card-body">
+                            <!-- Gifs will get dumped here -->
+                            <div class="col-lg-3">
+                                <div id="gifs-view"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <img id=giphyPng src="assets/images/giphy.png" />
+            </div>
+
+        </b4-card>
+    </div>
+
+    <!-- jQuery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <!-- JavaScript -->
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+
+</body>
+
+</html>
