@@ -1,9 +1,9 @@
 //  Array of Charlotte Hornets
-var hornets = ["Kemba Walker", "Dwight Howard", "Jeremy Lamb", "Malik Monk", "Nicolas Batum", "Michael Kidd-Gilchrist", "Cody Zeller", "Frank Kaminsky", "Marvin Williams", "Treveon Graham", "Guillermo Hernangomez", "Dwayne Bacon", "Michael Carter-Williams", "Julyan Stone", "Marcus Paige"];
+var hornets = ["Kemba Walker", "Dwight Howard", "Jeremy Lamb", "Malik Monk", "Nicolas Batum", "Michael Kidd-Gilchrist", "Cody Zeller", "Frank Kaminsky", "Marvin Williams", "Treveon Graham", "Willy Hernangomez", "Dwayne Bacon", "Michael Carter-Williams", "Marcus Paige"];
 
-// displayGifs function re-renders the HTML to display the appropriate content
 function displayGifs() {
 
+    //  Empties out previous list of .gifs to keep count at limit(10)
     $("#gifs-view").empty();
     
     var athlete = $(this).attr("player-name");
@@ -15,12 +15,10 @@ function displayGifs() {
         method: "GET"
     }).then(function(response) {
 
-    console.log(response);
-
         //  Creating a variable to hold the object
         var athleteGiphyArray = response.data;
 
-        //  Creating a for loop to display the number(10) of .gifs displayed
+        //  Creating a for loop
         for(var i=0; i < athleteGiphyArray.length; i++) {
             
             //  Creating a div to hold the image and rating
@@ -35,22 +33,38 @@ function displayGifs() {
             //  Displaying the rating
             athleteDiv.append(rDisplay);
             
-            //  Storing the .gif image
-            var giphyImage = athleteGiphyArray[i].images.fixed_width_still.url;
-            
             //  Creating an element to hold the image
-            var iDisplay = $("<img>").attr("src", giphyImage);
+            var iDisplay = $("<img>");
+
+            //  Adding attributes to the image
+            iDisplay.attr("src", athleteGiphyArray[i].images.fixed_width_still.url);
+            iDisplay.attr("still", athleteGiphyArray[i].images.fixed_width_still.url);
+            iDisplay.attr("animated", athleteGiphyArray[i].images.fixed_width.url);
+
+            //  Adding class to the still image
+            iDisplay.addClass("giphyImage");
 
             //  Appending the image
             athleteDiv.append(iDisplay);
 
-            //  Dumping everything into the page
+            //  Dumping image and rating into the page
             $("#gifs-view").append(athleteDiv);
+
+            //  When image is clicked...
+            iDisplay.on("click", function() {
+               
+                //  If src attribute is equal to still attribute...
+                if ($(this).attr("src") === $(this).attr("still")) {
+                    //  then change the src attribute to animated
+                    $(this).attr("src", $(this).attr("animated"));
+                }
+                else {
+                    //  Otherwise revert back to still
+                    $(this).attr("src", $(this).attr("still"));
+                }
+            });
             
         }
-        console.log(rating);
-        console.log(giphyImage);
-
     });
 }    
 
@@ -69,7 +83,7 @@ function renderButtons() {
         button.addClass("athlete-btn btn-primary");
         
         // Adding a data-attribute
-        button.attr("player-name", hornets);
+        button.attr("player-name", hornets[i]);
         
         // Providing the initial button text
         button.text(hornets[i]);
@@ -81,6 +95,7 @@ function renderButtons() {
 
 $("#add-athlete").on("click", function(event) {
     
+    //  This line prevents from submitting a form on click
     event.preventDefault();
     
     // This line grabs the input from the textbox
@@ -91,13 +106,12 @@ $("#add-athlete").on("click", function(event) {
 
     // Calling renderButtons which handles the processing of our athlete array
     renderButtons();
-  });
 
-  // Adding a click event listener to all elements with a class of "athlete-btn"
-  $(document).on("click", ".athlete-btn", displayGifs);
-      
+});
 
-  // Calling the renderButtons function to display the intial buttons
-  renderButtons();
+// Adding a click event listener to all elements with a class of "athlete-btn"
+$(document).on("click", ".athlete-btn", displayGifs);
 
-  
+    
+// Calling the renderButtons function to display the intial buttons
+renderButtons();
